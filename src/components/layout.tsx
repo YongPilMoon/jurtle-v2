@@ -1,10 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
+import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
+import Header from "./Header"
 import "./layout.css"
 
+const Container = styled.div`
+  max-width: 720px;
+  margin: 0 auto;
+`
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -17,25 +22,21 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+    <Container>
+      <Header />
+      <div>
         <main>{children}</main>
-        <footer style={{
-          marginTop: `2rem`
-        }}>
+        <footer
+          style={{
+            marginTop: `2rem`,
+          }}
+        >
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.com">Gatsby</a>
         </footer>
       </div>
-    </>
+    </Container>
   )
 }
 
