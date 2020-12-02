@@ -4,7 +4,6 @@ import styled from "styled-components"
 
 const Container = styled.header`
   height: 60px;
-  background-color: green;
   display: flex;
   align-items: center;
   padding: 0 12px;
@@ -17,7 +16,6 @@ const Header: FC<props> = () => (
         <Link
           to="/"
           style={{
-            color: `white`,
             textDecoration: `none`,
           }}
         >
@@ -28,4 +26,4 @@ const Header: FC<props> = () => (
   </Container>
 )
 
-export default Header;
+export default Header

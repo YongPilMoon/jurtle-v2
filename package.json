@@ -36,11 +36,13 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "delete": "rm -rf public .cache",
+    "deploy:prod": "yarn delete && yarn build && aws --profile myp s3 sync public s3://jurtle.net --delete --acl public-read"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/YongPilMoon/jurtle-v2"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
