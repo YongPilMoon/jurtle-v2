@@ -7,7 +7,7 @@ import Header from "./Header"
 import "./layout.css"
 
 const Container = styled.div`
-  max-width: 720px;
+  max-width: 620px;
   margin: 0 auto;
 `
 const Layout = ({ children }) => {
