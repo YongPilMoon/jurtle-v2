@@ -8,21 +8,20 @@ const Container = styled.header`
   align-items: center;
   padding: 0 12px;
 `
+
+const Logo = styled(Link)`
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+`
 interface props {}
 const Header: FC<props> = () => (
   <Container>
-    <div>
-      <div>
-        <Link
-          to="/"
-          style={{
-            textDecoration: `none`,
-          }}
-        >
-          jurtle
-        </Link>
-      </div>
-    </div>
+    <Logo
+      to="/"
+    >
+      JURTLE
+    </Logo>
   </Container>
 )
 
