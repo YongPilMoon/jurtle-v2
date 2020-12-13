@@ -1,16 +1,46 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql, Link } from "gatsby"
 import GlobalStyle from "../theme/globalStyles"
 import "./index.css"
 
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
 
-const IndexPage = () => (
-  <Layout>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
+const PostLink = ({ post }) => (
+  <div>
+    <Link to={post.frontmatter.slug}>
+      {post.frontmatter.title} ({post.frontmatter.date})
+    </Link>
+  </div>
 )
 
+const IndexPage = ({
+  data: {
+    allMarkdownRemark: { edges },
+  },
+}) => {
+  const Posts = edges
+    .filter(edge => !!edge.node.frontmatter.date)
+    .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+  return <Layout>{Posts}</Layout>
+}
+
 export default IndexPage
+
+export const pageQuery = graphql`
+  query {
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          id
+          excerpt(pruneLength: 250)
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            slug
+            title
+          }
+        }
+      }
+    }
+  }
+`

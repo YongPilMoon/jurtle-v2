@@ -14,16 +14,6 @@ const Container = styled.div`
   margin: 0 auto;
 `
 const Layout: FC<{}> = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <ThemeProvider theme={theme}>
       <Container>
